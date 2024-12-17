@@ -17,7 +17,6 @@ void setup(){
 
 // kontrola jestli je nekdo vitez
 int isWinner(int numInLine){
-    printf("numInLine: %d\n", numInLine);
     if(numInLine >= TILES_NEEDED_TO_WIN){
         return 1;
     }else{
@@ -106,25 +105,75 @@ int checkWinner(int row, int column){
     while(numInLine < TILES_NEEDED_TO_WIN && checked < TILES_NEEDED_TO_WIN && row - checked >= 0){
         if(game_grid[row][column] == game_grid[row - checked][column]){
             numInLine++;
-            printf("added from first if\n");
         } else {
             break;
         }
+        checked++;
     }
     checked = 1;
     while(numInLine < TILES_NEEDED_TO_WIN && checked < TILES_NEEDED_TO_WIN && row + checked < SIZE){
         if(game_grid[row][column] == game_grid[row + checked][column]){
             numInLine++;
-            printf("added from second if\n");
         } else {
             break;
         }
+        checked++;
     }
+    checked = 1;
     if (isWinner(numInLine) == 1){
         return 1;
     }else{
         numInLine = 1;
     }
+    // kontrola sikmo nahoru doleva a dolu doprava
+    while(numInLine < TILES_NEEDED_TO_WIN && checked < TILES_NEEDED_TO_WIN && row - checked >= 0 && column - checked >= 0){
+        if(game_grid[row][column] == game_grid[row - checked][column - checked]){
+            numInLine++;
+        } else {
+            break;
+        }
+        checked++;
+    }
+    checked = 1;
+    while(numInLine < TILES_NEEDED_TO_WIN && checked < TILES_NEEDED_TO_WIN && row + checked < SIZE && column + checked < SIZE){
+        if (game_grid[row][column] == game_grid[row + checked][column + checked]){
+            numInLine++;
+        } else {
+            break;
+        }
+        checked++;
+    }
+    checked = 1;
+    if (isWinner(numInLine) == 1){
+        return 1;
+    }else{
+        numInLine = 1;
+    }
+    // kontrola sikmo nahoru doprava a dolu doleva
+    while(numInLine < TILES_NEEDED_TO_WIN && checked < TILES_NEEDED_TO_WIN && row - checked >= 0 && column + checked < SIZE){
+        if(game_grid[row][column] == game_grid[row - checked][column + checked]){
+            numInLine++;
+        } else {
+            break;
+        }
+        checked++;
+    }
+    checked = 1;
+    while(numInLine < TILES_NEEDED_TO_WIN && checked < TILES_NEEDED_TO_WIN && row + checked < SIZE && column - checked >= 0){
+        if(game_grid[row][column] == game_grid[row + checked][column - checked]){
+            numInLine++;
+        } else {
+            break;
+        }
+        checked++;
+    }
+    checked = 1;
+    if (isWinner(numInLine) == 1){
+        return 1;
+    }else{
+        numInLine = 1;
+    }
+    return 0;
 }
 
 int main(){
