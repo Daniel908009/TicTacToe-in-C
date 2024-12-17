@@ -210,4 +210,5 @@ int main(){
         column = -1;
         printf("Current player: %c\n", players[current_player]);
     }
+    return 0;
 }
