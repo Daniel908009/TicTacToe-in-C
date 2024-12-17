@@ -1,5 +1,4 @@
 # TicTacToe-in-C
-# kivy_file_manager
 ## What is it?
 <p>This project is a simple Tic Tac Toe game without any extra libraries made in C.</p>
 
